@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Python syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install ruff
+        run: pip install ruff==0.17.3
+      - name: Check syntax errors and undefined names
+        # E9: syntax/IO errors; F63/F7/F82: invalid/undefined names.
+        # Deliberately narrow so existing style debt does not fail the build.
+        run: ruff check --select E9,F63,F7,F82 --output-format=github .

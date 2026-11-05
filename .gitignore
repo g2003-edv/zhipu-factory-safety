@@ -1,10 +1,32 @@
-# 仅过滤程序运行时新生成的截图、日志
+# 运行时产物：告警截图与日志
 alert_screenshot/
 告警日志.csv
-# Python缓存
+
+# 模型权重（运行时自动下载，不进入版本库）
+*.pt
+
+# 已移出版本库的私人素材（文件仍在本地磁盘，仅不再提交）
+test.jpg
+
+# 密钥与本地配置
+.env
+.env.local
+.env.*.local
+
+# 虚拟环境
+venv/
+.venv/
+env/
+ENV/
+
+# Python 缓存
 __pycache__/
-*.pyc
-# 允许仓库里已有的demo演示图、test图片上传
-!demo_img/
-!demo_img/*
-!test.jpg
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 编辑器 / 系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
